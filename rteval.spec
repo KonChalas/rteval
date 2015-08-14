@@ -2,7 +2,7 @@
 %{!?python_ver: %define python_ver %(%{__python} -c "import sys ; print sys.version[:3]")}
 
 Name:		rteval
-Version:	1.37
+Version:	1.38
 Release:	1%{?dist}
 Summary:	Utility to evaluate system suitability for RT Linux
 
@@ -71,6 +71,10 @@ rm -rf $RPM_BUILD_ROOT
 /usr/bin/rteval
 
 %changelog
+* Tue Sep 17 2013 Clark Williams <williams@redhat.com> - 1.38-1
+- cleaned up incorrect usage of percent signs in changelog
+- added data validation checks to histogram parsing code
+
 * Thu Dec 13 2012 Clark Williams <williams@redhat.com> - 1.37-1
 - added module specific command line options
 - From Raphaël Beamonte <raphael.beamonte@gmail.com>:
@@ -87,7 +91,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Apr  2 2012 Clark Williams <williams@redhat.com> - 1.35-1
 - fix thinko where SIGINT and SIGTERM handlers were commented out
 
-* Mon Jan 12 2012 Clark Williams <williams@redhat.com> - 1.34-1
+* Thu Jan 12 2012 Clark Williams <williams@redhat.com> - 1.34-1
 - fix missing config merge in rteval.py to pass parameters
   down to cyclictest
 - modify hackbench to use helper function to start process
@@ -124,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
   of memory per core
 
 * Wed Jul 14 2010 Clark Williams <williams@redhat.com> - 1.27-1
-- modified hackbench to go back to using threads rather than 
+- modified hackbench to go back to using threads rather than
   processes for units of work
 - added memory size, number of numa nodes and run duration to the
   parameter dictionary passed to all loads and cyclictest
@@ -137,20 +141,20 @@ rm -rf $RPM_BUILD_ROOT
 - updated source copyrights to 2010
 
 * Fri Jul  9 2010 Clark Williams <williams@redhat.com> - 1.24-1
-- modified hackbench arguments and added new parameters for 
+- modified hackbench arguments and added new parameters for
   hackbench in rteval.conf
 
 * Thu Jul  8 2010 Clark Williams <williams@redhat.com> - 1.23-1
 - version bump to deal with out-of-sync cvs issue
- 
+
 * Thu Jul  8 2010 Clark Williams <williams@redhat.com> - 1.22-1
 - merged David Sommerseth <davids@redhat.com> changes to use
   hackbench from rt-tests packages rather than carry local copy
-- converted all loads and cyclictest to pass __init__ parameters 
+- converted all loads and cyclictest to pass __init__ parameters
   in a dictionary rather than as discrete parameters
 - added logging for load output
 
-* Thu Apr 13 2010 Clark Williams <williams@redhat.com> - 1.21-1
+* Tue Apr 13 2010 Clark Williams <williams@redhat.com> - 1.21-1
 - from Luis Claudio Goncalves <lgoncalv@redhat.com>:
   - remove unecessary wait() call in cyclictest.py
   - close /dev/null after using it
@@ -163,10 +167,10 @@ rm -rf $RPM_BUILD_ROOT
   - added --annotate feature to rteval
   - updates to xmlrpc code
 
-* Thu Apr  6 2010 Clark Williams <williams@redhat.com> - 1.20-1
+* Tue Apr  6 2010 Clark Williams <williams@redhat.com> - 1.20-1
 - code fixes from Luis Claudio Goncalves <lgoncalv@redhat.com>
 - from David Sommerseth <davids@redhat.com>:
-  - xmlrpc server updates 
+  - xmlrpc server updates
   - cputopology.py for recording topology in xml
   - added NUMA node recording for run data
   - rpmlint fixes
@@ -209,7 +213,7 @@ rm -rf $RPM_BUILD_ROOT
     '/rteval'
   - Send program arguments via RtEval() constructor
   - Added more DMI data into the summary.xml report
-  - Fixed issue with not including all devices in the 
+  - Fixed issue with not including all devices in the
     OnBoardDeviceInfo tag
 
 * Thu Dec  3 2009 David Sommerseth <davids@redhat.com> - 1.12-2
@@ -226,10 +230,10 @@ rm -rf $RPM_BUILD_ROOT
   path for /usr/bin/rteval (problem with rpmdiff)
 
 * Tue Nov 10 2009 Clark Williams <williams@redhat.com> - 1.11-4
-- changed symlink back to install and tracked by %files
+- changed symlink back to install and tracked by %%files
 
 * Mon Nov  9 2009 Clark Williams <williams@redhat.com> - 1.11-3
-- changed symlink generation from %post to %posttrans
+- changed symlink generation from %%post to %%posttrans
 
 * Mon Nov  9 2009 Clark Williams <williams@redhat.com> - 1.11-2
 - fixed incorrect dependency for libxslt
@@ -272,7 +276,7 @@ rm -rf $RPM_BUILD_ROOT
 * Mon Oct 12 2009 Clark Williams <williams@redhat.com> - 1.5-1
 - changed cyclictest to use less memory when doing statisics
   calculations
-- updated debug output to use module name prefixes 
+- updated debug output to use module name prefixes
 - changed option processing to only process config file once
 
 * Fri Oct  9 2009 Clark Williams <williams@redhat.com> - 1.4-1
@@ -328,7 +332,7 @@ rm -rf $RPM_BUILD_ROOT
 - added --summarize option to display summary of existing report
 - added helpfile target to Makefile
 
-* Tue Mar 26 2009 Clark Williams <williams@torg> - 0.7-1
+* Thu Mar 26 2009 Clark Williams <williams@torg> - 0.7-1
 - added require for python-schedutils to specfile
 - added default for cyclictest output file
 - added help parameter to option parser data
