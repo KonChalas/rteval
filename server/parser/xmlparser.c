@@ -41,6 +41,7 @@
 #include <xmlparser.h>
 #include <sha1.h>
 #include <log.h>
+#include <ctype.h>
 
 static dbhelper_func const * xmlparser_dbhelpers = NULL;
 

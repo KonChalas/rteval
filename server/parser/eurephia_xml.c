@@ -105,7 +105,7 @@ xmlNode *xmlFindNode(xmlNode *node, const char *key) {
  *
  * @return returns a char pointer with the text contents of an xmlNode.
  */
-inline char *xmlExtractContent(xmlNode *n) {
+char *xmlExtractContent(xmlNode *n) {
         return (char *) (((n != NULL) && (n->children != NULL)) ? n->children->content : NULL);
 }
 
@@ -118,7 +118,7 @@ inline char *xmlExtractContent(xmlNode *n) {
  *
  * @return Returns a string with the text content, if the node is found.  Otherwise, NULL is returned.
  */
-inline char *xmlGetNodeContent(xmlNode *node, const char *key) {
+char *xmlGetNodeContent(xmlNode *node, const char *key) {
         return xmlExtractContent(xmlFindNode(node, key));
 }
 

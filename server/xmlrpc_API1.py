@@ -93,8 +93,8 @@ class XMLRPC_API1():
 
         # Save a copy of the report on the file system
         # Make sure we have a directory to write files into
-        self.__mkdatadir(self.config.datadir + '/queue/')
-        fname = self.__getfilename('queue/', ('%s' % clientid), '.xml', False)
+        self.__mkdatadir(self.config.datadir + '/queue')
+        fname = self.__getfilename('queue', ('%s' % clientid), '.xml', False)
         xmldoc.saveFormatFileEnc(fname,'UTF-8',1)
         if self.debug:
             print "Copy of report: %s" % fname

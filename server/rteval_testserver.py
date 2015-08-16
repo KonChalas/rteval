@@ -46,12 +46,12 @@ class RequestHandler(SimpleXMLRPCRequestHandler):
 
 class RTevald_config(object):
     def __init__(self):
-        self.config = {'datadir': '/tmp/rteval-xmlrpc-testsrv',
+        self.config = {'datadir': '/var/lib/rteval',
                        'db_server': 'localhost',
                        'db_port': 5432,
-                       'database': 'dummy',
-                       'db_username': None,
-                       'db_password': None}
+                       'database': 'rteval',
+                       'db_username': 'rtevxmlrpc',
+                       'db_password': 'rtevaldb'}
         self.__update_vars()
 
     def __update_vars(self):

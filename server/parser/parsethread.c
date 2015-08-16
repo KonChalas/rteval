@@ -188,6 +188,7 @@ inline int parse_report(threadData_t *thrdata, parseJob_t *job)
 	xmlDoc *repxml = NULL;
 	char *destfname;
 
+
 	// Check file size - and reject too big files
 	if( check_filesize(thrdata, job->filename) == 0 ) {
 		writelog(thrdata->dbc->log, LOG_ERR,
@@ -198,6 +199,7 @@ inline int parse_report(threadData_t *thrdata, parseJob_t *job)
 
 
 	repxml = xmlParseFile(job->filename);
+	printf("%s", job->filename);
 	if( !repxml ) {
 		writelog(thrdata->dbc->log, LOG_ERR,
 			 "[Thread %i] (submid: %i) Could not parse XML file: %s",

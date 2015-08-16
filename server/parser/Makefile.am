@@ -24,7 +24,7 @@
 #
 
 # Generic include files, found by ./configure
-AM_CPPFLAGS = $(LIBXML2_INC) $(LIBXSLT_INC) $(LIBPQ_INC)
+AM_CPPFLAGS = $(LIBXML2_INC) $(LIBXSLT_INC) $(LIBPQ_INC) 
 
 # What is required to build rteval_parserd
 bin_PROGRAMS = rteval-parserd

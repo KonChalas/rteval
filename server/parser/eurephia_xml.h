@@ -49,8 +49,8 @@
 char *xmlGetAttrValue(xmlAttr *properties, const char *key);
 xmlNode *xmlFindNode(xmlNode *node, const char *key);
 
-inline char *xmlExtractContent(xmlNode *n);
-inline char *xmlGetNodeContent(xmlNode *node, const char *key);
+char *xmlExtractContent(xmlNode *n);
+char *xmlGetNodeContent(xmlNode *node, const char *key);
 char *xmlNodeToString(LogContext *log, xmlNode *node);
 
 #endif 	    /* !EUREPHIA_XML_H_ */

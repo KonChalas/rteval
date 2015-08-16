@@ -32,7 +32,7 @@ import types
 class Database(object):
     def __init__(self, host=None, port=None, user=None, password=None, database=None,
                  noaction=False, debug=False):
-        self.noaction = noaction
+        self.noaction = not  noaction
         self.debug = debug
 
         dsnd = {}
@@ -48,9 +48,9 @@ class Database(object):
             dsnd['password'] = password
         if database is not None:
             dsnd['dbname'] = database
-
         dsn = " ".join(["%s='%s'" %(k,v) for (k,v) in dsnd.items()])
-        self.conn = not self.noaction and psycopg2.connect(dsn) or None
+        print dsn
+        self.conn = not self.noaction and psycopg2.connect("dbname=rteval user=rtevxmlrpc") or None
 
 
     def INSERT(self, sqlvars):

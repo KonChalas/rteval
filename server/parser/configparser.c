@@ -111,7 +111,7 @@ static inline eurephiaVALUES *default_cfg_values(LogContext *log, eurephiaVALUES
 
 	cfg = eCreate_value_space(log, 20);
 	eAdd_value(cfg, "datadir", "/var/lib/rteval");
-	eAdd_value(cfg, "xsltpath", "/usr/share/rteval");
+	eAdd_value(cfg, "xsltpath", "/usr/local/share/rteval");
 	eAdd_value(cfg, "db_server", "localhost");
 	eAdd_value(cfg, "db_port", "5432");
 	eAdd_value(cfg, "database", "rteval");
