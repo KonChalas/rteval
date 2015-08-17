@@ -36,7 +36,7 @@ class rtevalclient:
     """
     rtevalclient is a library for sending rteval reports to an rteval server via XML-RPC.
     """
-    def __init__(self, url="http://rtserver.farm.hsv.redhat.com/rteval/API1/", hostn = None):
+    def __init__(self, url="http://localhost:65432/rteval/API1/", hostn = None):
         self.srv = xmlrpclib.ServerProxy(url)
         if hostn is None:
             self.hostname = platform.node()

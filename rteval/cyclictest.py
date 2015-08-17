@@ -230,6 +230,23 @@ class Cyclictest(Thread):
         if c.poll() == None:
             os.kill(c.pid, signal.SIGINT)
         # now parse the histogram output
+        cyclictest_log = c.stdout.read()
+        f = open('log', 'w')
+        CPUs = self.numcores 
+        kernelinfo = "uname -rvm"
+        process = subprocess.Popen(['grep', '-m', '1', 'model name', '/proc/cpuinfo'], stdout=subprocess.PIPE)
+        cpuinfo_output = process.communicate()[0]
+        process = subprocess.Popen(['uname', '-rvm'], stdout=subprocess.PIPE) 
+        kernelinfo_output = process.communicate()[0]
+
+        cyclictest_output = "# {0}".format(cpuinfo_output[13:])  
+        cyclictest_output += "# CPUs: {0}\n".format(CPUs)
+        cyclictest_output += "# Kernel: {0}".format(kernelinfo_output)
+        cyclictest_output += "# Iterations: \n"
+        cyclictest_output += cyclictest_log 
+
+        f.write(cyclictest_output)
+        f.close()
         for line in c.stdout:
             line = line.strip()
             if line.startswith('#') or len(line) == 0: continue

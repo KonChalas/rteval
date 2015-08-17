@@ -48,7 +48,7 @@ if __name__ == '__main__':
     d = libxml2.parseFile(opts.report)
 
     client = rtevalclient.rtevalclient("http://%s/rteval/API1/" % opts.xmlrpchost)
-
+    print client
     status = client.SendReport(d)
     print "SendReport(xmlDoc): %s" % status
 else:
