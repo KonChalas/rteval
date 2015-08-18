@@ -70,7 +70,7 @@ install_rteval: installdirs
 	install -m 644 doc/rteval.8 $(MANDIR)/man8/
 	gzip -f $(MANDIR)/man8/rteval.8
 	chmod 755 $(PYLIB)/rteval/rteval.py
-#	ln -s $(PYLIB)/rteval/rteval.py $(DESTDIR)/usr/bin/rteval;
+	ln -s $(PYLIB)/rteval/rteval.py $(DESTDIR)/usr/bin/rteval;
 
 install_loads:	$(LOADS)
 	[ -d $(DATADIR)/rteval/loadsource ] || mkdir -p $(DATADIR)/rteval/loadsource

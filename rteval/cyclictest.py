@@ -230,7 +230,23 @@ class Cyclictest(Thread):
         if c.poll() == None:
             os.kill(c.pid, signal.SIGINT)
         # now parse the histogram output
-        cyclictest_log = c.stdout.read()
+
+        cyclictest_log = ''
+        for line in c.stdout:
+            cyclictest_log += line
+            line = line.strip()
+            if line.startswith('#') or len(line) == 0: continue
+            vals = line.split()
+            if len(vals) == 0: continue
+            index = int(vals[0])
+            for i in range(0, len(self.data)-1):
+                if str(i) not in self.data: continue
+                self.data[str(i)].bucket(index, int(vals[i+1]))
+                self.data['system'].bucket(index, int(vals[i+1]))
+        for n in self.data.keys():
+            self.data[n].reduce()
+        self.finished.set()
+
         f = open('log', 'w')
         CPUs = self.numcores 
         kernelinfo = "uname -rvm"
@@ -247,19 +263,6 @@ class Cyclictest(Thread):
 
         f.write(cyclictest_output)
         f.close()
-        for line in c.stdout:
-            line = line.strip()
-            if line.startswith('#') or len(line) == 0: continue
-            vals = line.split()
-            if len(vals) == 0: continue
-            index = int(vals[0])
-            for i in range(0, len(self.data)-1):
-                if str(i) not in self.data: continue
-                self.data[str(i)].bucket(index, int(vals[i+1]))
-                self.data['system'].bucket(index, int(vals[i+1]))
-        for n in self.data.keys():
-            self.data[n].reduce()
-        self.finished.set()
         os.close(null)
 
     def genxml(self, x):
