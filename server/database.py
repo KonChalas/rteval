@@ -32,7 +32,7 @@ import types
 class Database(object):
     def __init__(self, host=None, port=None, user=None, password=None, database=None,
                  noaction=False, debug=False):
-        self.noaction = not  noaction
+        self.noaction = noaction
         self.debug = debug
 
         dsnd = {}
