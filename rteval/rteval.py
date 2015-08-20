@@ -51,6 +51,7 @@ import xmlrpclib
 import platform
 import fnmatch
 import glob
+import libxml2
 from datetime import datetime
 from distutils import sysconfig
 
@@ -883,11 +884,21 @@ class RtEval(object):
         warning_sent = False
         while attempt < 6:
             try:
+
                 client = rtevalclient.rtevalclient(url)
                 print "Submitting report to %s" % url
                 rterid = client.SendReport(self.xmlreport.GetXMLdocument())
                 print "Report registered with submission id %i" % rterid
                 attempt = 10
+
+
+		f = open('/home/konstantinos/Workspace/rteval/log', 'r')
+	     	d = libxml2.newDoc("1.0")
+		n = d.newTextChild(None, 'Cyclictest_raw_histogram', rterid + '\n' + f.read())
+		d.setRootElement(n)
+		d.saveFormatFileEnc('/dev/null','UTF-8', 1)
+		client.SendReport(d)
+                
                 exitcode = 0 # Success
             except socket.error:
                 if (self.mailer is not None) and (not warning_sent):

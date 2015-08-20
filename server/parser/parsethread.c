@@ -297,8 +297,7 @@ inline int parse_report(threadData_t *thrdata, parseJob_t *job)
  *
  * @param thrargs Contains database connection, XSLT stylesheet, POSXI MQ descriptor, etc
  *
- * @return Returns 0 on successful operation, otherwise 1 on errors.
- */
+ * @return Returns 0 on successful operation, otherwise 1 on errors.  */
 void *parsethread(void *thrargs) {
 	threadData_t *args = (threadData_t *) thrargs;
 	parseJob_t jobinfo;
@@ -353,6 +352,7 @@ void *parsethread(void *thrargs) {
 			writelog(args->dbc->log, LOG_INFO,
 				 "[Thread %i] Job recieved, submid: %i - %s",
 				 args->id, jobinfo.submid, jobinfo.filename);
+
 
 			// Mark the job as "in progress", if successful update, continue parsing it
 			if( db_update_submissionqueue(args->dbc, jobinfo.submid, STAT_INPROG) ) {
