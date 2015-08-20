@@ -891,14 +891,6 @@ class RtEval(object):
                 print "Report registered with submission id %i" % rterid
                 attempt = 10
 
-
-		f = open('/home/konstantinos/Workspace/rteval/log', 'r')
-	     	d = libxml2.newDoc("1.0")
-		n = d.newTextChild(None, 'Cyclictest_raw_histogram', rterid + '\n' + f.read())
-		d.setRootElement(n)
-		d.saveFormatFileEnc('/dev/null','UTF-8', 1)
-		client.SendReport(d)
-                
                 exitcode = 0 # Success
             except socket.error:
                 if (self.mailer is not None) and (not warning_sent):

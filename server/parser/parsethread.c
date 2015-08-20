@@ -348,7 +348,6 @@ void *parsethread(void *thrargs) {
 		// If we have a message, then process the parse job
 		if( (errno != EAGAIN) && (len > 0) ) {
 			int res = 0;
-
 			writelog(args->dbc->log, LOG_INFO,
 				 "[Thread %i] Job recieved, submid: %i - %s",
 				 args->id, jobinfo.submid, jobinfo.filename);

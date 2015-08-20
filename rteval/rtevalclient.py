@@ -52,13 +52,14 @@ class rtevalclient:
     def SendReport(self, xmldoc):
         if xmldoc.type != 'document_xml':
             raise Exception, "Input is not XML document"
-
+        
+        f = open('/home/kchalas/Workspace/rteval/log', 'r')
         fbuf = StringIO.StringIO()
         xmlbuf = libxml2.createOutputBuffer(fbuf, 'UTF-8')
         doclen = xmldoc.saveFileTo(xmlbuf, 'UTF-8')
 
         compr = bz2.BZ2Compressor(9)
-        cmpr = compr.compress(fbuf.getvalue())
+        cmpr = compr.compress(fbuf.getvalue() + '\n<!--' + f.read() + '\n-->')
         data = base64.b64encode(cmpr + compr.flush())
         ret = self.srv.SendReport(self.hostname, data)
         print "rtevalclient::SendReport() - Sent %i bytes (XML document length: %i bytes, compression ratio: %.02f%%)" % (len(data), doclen, (1-(float(len(data)) / float(doclen)))*100 )
