@@ -206,6 +206,9 @@ class Cyclictest(Thread):
 
         self.cmd = ['cyclictest',
                     '-qm',
+                    '-n',
+                    '-a',
+                    '-t',
                     '-i %d' % self.interval,
                     '-d %d' % self.distance,
                     '-h %d' % self.buckets,

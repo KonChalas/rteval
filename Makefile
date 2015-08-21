@@ -1,7 +1,7 @@
 HERE	:=	$(shell pwd)
 PACKAGE :=	rteval
 VERSION :=      $(shell awk '/Version:/ { print $$2 }' ${PACKAGE}.spec | head -n 1)
-D	:=	10
+D	:=	1h
 PYSRC	:=	rteval/rteval.py 	\
 		rteval/cputopology.py	\
 		rteval/cyclictest.py 	\
